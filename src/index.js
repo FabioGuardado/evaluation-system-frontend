@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'bootswatch/dist/morph/bootstrap.min.css';
+import '../src/globals.css';
 import App from './App';
 
 ReactDOM.render(

@@ -1,25 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import styled from '@emotion/styled';
+
+import Question from './Question';
+
+const TestNavbar = styled.nav`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    padding: 0 1.5rem;
+    background-color: #000;
+    color: #fff;
+`;
 
 const Test = () => {
+
+    const [data, setData] = useState({})
+
+    useEffect(() => {
+        const getData = () => {
+            fetch('http://localhost:8080/api/test/1')
+            .then(response => response.json())
+            .then(data => console.log(data));
+        }
+
+        getData();
+    }, []);
+
     return ( 
         <>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div className="container-fluid">
-                    <h1 className="navbar-brand">Tehcnical evaluation</h1>
+            <TestNavbar>
+                <h4 className="text-light">Tehcnical evaluation</h4>
+                <span className="text-light">Timer</span>
+                <span className="text-light">Question 1 of 5</span>
+            </TestNavbar>
 
-                    <div className="collapse navbar-collapse d-flex flex-row-reverse">
-                        <span>Timer</span>
-                    </div>
-                </div>
-            </nav>
-
-            <div classNameName="container">
-                <div classNameName="row">
-                    <div classNameName="col-md-12">
-                        <h1>Test</h1>
-                    </div>
-                </div>
-            </div>
+            <Question data={data} />
         </>
      );
 }
